@@ -1,0 +1,109 @@
+import 'package:flutter/material.dart';
+import 'package:laravel_test_api/screens/login.dart';
+import 'package:laravel_test_api/screens/subscriptions.dart';
+import 'package:laravel_test_api/services/user_services.dart';
+import 'package:laravel_test_api/util/home_util.dart';
+import 'package:laravel_test_api/util/profile_util.dart';
+import 'package:laravel_test_api/widgets/location_widgets.dart';
+
+class BottomNavigationApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BottomNavigationScreen(),
+    );
+  }
+}
+
+class BottomNavigationScreen extends StatefulWidget {
+  @override
+  _BottomNavigationScreenState createState() => _BottomNavigationScreenState();
+}
+
+class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
+  int _currentIndex = 0;
+
+  final List<Widget> _screens = [
+    HomeScreen(),
+    Subscriptions(),
+    ProfileScreen(),
+    LocationWidget(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('DAVA'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                logout().then((value) => {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => const Login()),
+                          (route) => false)
+                    });
+              },
+              icon: const Icon(Icons.exit_to_app))
+        ],
+      ),
+      body: _screens[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.blue,
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            backgroundColor: Colors.lightBlueAccent,
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Colors.lightBlueAccent,
+            icon: Icon(Icons.subscriptions),
+            label: 'Subscription',
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Colors.lightBlueAccent,
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Colors.lightBlueAccent,
+            icon: Icon(Icons.medical_services),
+            label: 'Services',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return HomeUtil();
+  }
+}
+
+class ProfileScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ProfileUtil();
+  }
+}
+
+class ServicesScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Services Screen'),
+    );
+  }
+}
