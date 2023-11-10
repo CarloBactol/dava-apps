@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:laravel_test_api/screens/location_screen.dart';
 import 'package:laravel_test_api/screens/login.dart';
-import 'package:laravel_test_api/screens/subscriptions.dart';
 import 'package:laravel_test_api/services/user_services.dart';
 import 'package:laravel_test_api/util/home_util.dart';
 import 'package:laravel_test_api/util/profile_util.dart';
-import 'package:laravel_test_api/widgets/location_widgets.dart';
 
 class BottomNavigationApp extends StatelessWidget {
   @override
@@ -26,9 +25,11 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
 
   final List<Widget> _screens = [
     HomeScreen(),
-    Subscriptions(),
+    // Subscriptions(),
+    BookingScreen(),
     ProfileScreen(),
-    LocationWidget(),
+    // LocationWidget(),
+    LocationScreen(),
   ];
 
   @override
@@ -66,8 +67,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           ),
           BottomNavigationBarItem(
             backgroundColor: Colors.lightBlueAccent,
-            icon: Icon(Icons.subscriptions),
-            label: 'Subscription',
+            icon: Icon(Icons.person_search_rounded),
+            label: 'Booking',
           ),
           BottomNavigationBarItem(
             backgroundColor: Colors.lightBlueAccent,
@@ -76,7 +77,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           ),
           BottomNavigationBarItem(
             backgroundColor: Colors.lightBlueAccent,
-            icon: Icon(Icons.medical_services),
+            icon: Icon(Icons.location_on),
             label: 'Services',
           ),
         ],
@@ -102,8 +103,17 @@ class ProfileScreen extends StatelessWidget {
 class ServicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text('Services Screen'),
+    );
+  }
+}
+
+class BookingScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text('Booking'),
     );
   }
 }
