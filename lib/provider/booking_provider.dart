@@ -1,28 +1,27 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:laravel_test_api/models/location_m.dart';
+import 'package:laravel_test_api/models/booking_model.dart';
 import 'package:laravel_test_api/services/user_services.dart';
 
-class LocationProvider extends ChangeNotifier {
-  List<Service> _allServices = [];
-  List<Service> _filteredServices = [];
+class BookingProvider extends ChangeNotifier {
+  List<BookingsM> _bookings = [];
+  List<BookingsM> _filteredBookings = [];
 
-  List<Service> get services => _filteredServices;
+  List<BookingsM> get bookings => _filteredBookings;
 
   Future<void> fetchServices() async {
     String token = await getToken();
     const apiUrl = 'https://davs-apps-150658629956.herokuapp.com/api/services';
     final response = await http.get(Uri.parse(apiUrl), headers: {
       "Accept": "application/json",
-      'Authorization': 'Bearer $token',
     });
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
-      _allServices.clear();
-      _allServices = data.map((item) => Service.fromJson(item)).toList();
-      _filteredServices.clear();
-      _filteredServices = _allServices;
+      _bookings.clear();
+      _bookings = data.map((item) => BookingsM.fromJson(item)).toList();
+      _filteredBookings.clear();
+      _filteredBookings = _bookings;
     } else {
       // Handle error, maybe show an error message or log the error
       print('Failed to load services');
@@ -31,24 +30,19 @@ class LocationProvider extends ChangeNotifier {
   }
 
   void filterServices(String query) {
-    if (_allServices.isEmpty) {
+    if (_bookings.isEmpty) {
       // Fetch services if not already loaded
       fetchServices();
     }
 
     if (query.isEmpty) {
-      _filteredServices = _allServices;
+      _filteredBookings = _bookings;
     } else {
-      _filteredServices = _allServices
+      _filteredBookings = _bookings
           .where((service) =>
-              service.content.toLowerCase().contains(query.toLowerCase()))
+              service.appointment.toLowerCase().contains(query.toLowerCase()))
           .toList();
     }
-    notifyListeners();
-  }
-
-  void reset() {
-    _filteredServices = [];
     notifyListeners();
   }
 }

@@ -1,17 +1,19 @@
-//
-
-// =================================================================
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:laravel_test_api/screens/booking.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LocationDetailScreen extends StatelessWidget {
   final String serviceName;
+  final String serviceBranch;
+  final String isOpen;
   final LatLng serviceLocation;
 
   LocationDetailScreen({
     required this.serviceName,
     required this.serviceLocation,
+    required this.isOpen,
+    required this.serviceBranch,
   });
 
   @override
@@ -55,6 +57,23 @@ class LocationDetailScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Navigate to the booking page with parameters
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BookingScreen(
+                serviceName: serviceName,
+                serviceLocation: serviceLocation,
+                serviceBranch: serviceBranch,
+                isOpen: isOpen,
+              ),
+            ),
+          );
+        },
+        child: Icon(Icons.book),
       ),
     );
   }

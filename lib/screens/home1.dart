@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:laravel_test_api/screens/appointmentcard_screen.dart';
 import 'package:laravel_test_api/screens/location_screen.dart';
 import 'package:laravel_test_api/screens/login.dart';
 import 'package:laravel_test_api/services/user_services.dart';
+import 'package:laravel_test_api/util/about_home.dart';
 import 'package:laravel_test_api/util/home_util.dart';
 import 'package:laravel_test_api/util/profile_util.dart';
 
@@ -89,7 +91,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return HomeUtil();
+    return AboutScreen();
   }
 }
 
@@ -105,15 +107,6 @@ class ServicesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Text('Services Screen'),
-    );
-  }
-}
-
-class BookingScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Booking'),
     );
   }
 }

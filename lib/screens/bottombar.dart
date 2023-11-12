@@ -33,7 +33,7 @@ class _BottomBarWidgetState extends State<BottomBarWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bottom Bar with Profiles, Services, and Subscription'),
+        title: Text('Dava'),
       ),
       body: Center(
         child: _currentIndex == 0

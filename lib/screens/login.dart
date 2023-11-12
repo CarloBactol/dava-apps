@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laravel_test_api/screens/forgot_password.dart';
 import 'package:laravel_test_api/screens/home1.dart';
 import 'package:laravel_test_api/widgets/browse_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';

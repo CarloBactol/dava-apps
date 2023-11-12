@@ -129,20 +129,29 @@ class _LocationScreenState extends State<LocationScreen> {
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Padding(
+                            Padding(
                               padding: const EdgeInsets.only(top: 5),
-                              child: Text(
-                                "OPEN",
-                                style: TextStyle(color: Colors.green),
-                              ),
+                              child: service.isOpen == '1'
+                                  ? const Text(
+                                      "OPEN",
+                                      style: TextStyle(color: Colors.green),
+                                    )
+                                  : const Text(
+                                      "CLOSE",
+                                      style: TextStyle(color: Colors.red),
+                                    ),
                             ),
-                            const Padding(
+                            Padding(
                               padding: const EdgeInsets.only(top: 5),
-                              child: const Text("Opens Hours: 8pm - 6pm"),
+                              child: Text("Open Hours: ${service.openHours}"),
                             ),
-                            const Padding(
+                            Padding(
                               padding: const EdgeInsets.only(top: 5),
-                              child: const Text("Days Open: Monday to Friday"),
+                              child: Text("Open Days: ${service.daysOpen}"),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Text("Address: ${service.address}"),
                             ),
                             Padding(
                               padding:
@@ -164,6 +173,8 @@ class _LocationScreenState extends State<LocationScreen> {
                               builder: (context) => LocationDetailScreen(
                                 serviceName: service.content,
                                 serviceLocation: serviceLatLng,
+                                serviceBranch: service.address,
+                                isOpen: service.isOpen,
                               ),
                             ),
                           );

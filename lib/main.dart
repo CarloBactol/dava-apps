@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laravel_test_api/provider/booking_provider.dart';
 import 'package:laravel_test_api/provider/location_provider.dart';
 import 'package:laravel_test_api/screens/getstarted.dart';
 import 'package:laravel_test_api/screens/loading.dart';
@@ -8,6 +9,7 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => LocationProvider()),
+      ChangeNotifierProvider(create: (_) => BookingProvider()),
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,

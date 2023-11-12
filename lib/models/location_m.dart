@@ -1,5 +1,4 @@
 class Service {
-  final String name;
   final String address;
   final double lat;
   final double long;
@@ -7,9 +6,11 @@ class Service {
   final String status;
   final String createdAt;
   final String updatedAt;
+  final String isOpen;
+  final String openHours;
+  final String daysOpen;
 
   Service({
-    required this.name,
     required this.address,
     required this.lat,
     required this.long,
@@ -17,11 +18,13 @@ class Service {
     required this.content,
     required this.createdAt,
     required this.updatedAt,
+    required this.isOpen,
+    required this.openHours,
+    required this.daysOpen,
   });
 
   factory Service.fromJson(Map<String, dynamic> json) {
     return Service(
-      name: json['name'] ?? '',
       lat: double.parse(json["lat"].toString()),
       long: double.parse(json["long"].toString()),
       address: json['address'],
@@ -29,6 +32,9 @@ class Service {
       status: json['status'] ?? '',
       createdAt: json['created_at'] ?? '',
       updatedAt: json['updated_at'] ?? '',
+      isOpen: json['isOpen'] ?? '',
+      openHours: json['openHours'] ?? '',
+      daysOpen: json['daysOpen'] ?? '',
     );
   }
 }
