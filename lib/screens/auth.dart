@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:laravel_test_api/constant.dart';
 
 class RegistrationScreen extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
@@ -7,7 +8,7 @@ class RegistrationScreen extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
 
   Future<void> registerUser() async {
-    const url = 'https://davs-apps-150658629956.herokuapp.com/api/register';
+    const url = '$baseURL/register';
     final response = await http.post(
       Uri.parse(url),
       body: {
@@ -70,7 +71,7 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
 
   Future<void> loginUser() async {
-    const url = 'https://davs-apps-150658629956.herokuapp.com/api/login';
+    const url = '$baseURL/login';
     final response = await http.post(
       Uri.parse(url),
       body: {

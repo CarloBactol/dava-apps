@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
+import 'package:laravel_test_api/constant.dart';
 import 'dart:convert';
 
 import 'package:laravel_test_api/services/user_services.dart';
@@ -20,8 +22,7 @@ class _BookingScreenState extends State<BookingScreen> {
 
   Future<void> fetchData() async {
     final email = await getUserEmail();
-    final response = await http.get(Uri.parse(
-        'https://davs-apps-150658629956.herokuapp.com/api/my_bookings/${email}'));
+    final response = await http.get(Uri.parse('$baseURL/my_bookings/$email'));
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
@@ -37,8 +38,7 @@ class _BookingScreenState extends State<BookingScreen> {
 
   Future<void> cancelBook() async {
     final email = await getUserEmail();
-    final response = await http.get(Uri.parse(
-        'https://davs-apps-150658629956.herokuapp.com/api/my_bookings/'));
+    final response = await http.get(Uri.parse('$baseURL/my_bookings/'));
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
@@ -79,7 +79,9 @@ class _BookingScreenState extends State<BookingScreen> {
                           serviceBranch: book['branch'] ?? '',
                           serviceLocation: book['address'] ?? '',
                           selectedService: book['type'] ?? '',
-                          selectedDateTime: book['appointment'] ?? '',
+                          selectedDate: book['date'] ?? '',
+                          start: book['start'] ?? '',
+                          end: book['end'] ?? '',
                           status: book['status'],
                         ),
                       ],
@@ -100,7 +102,9 @@ class AppointmentCard extends StatelessWidget {
   final String serviceBranch;
   final String serviceLocation;
   final String selectedService;
-  final String selectedDateTime;
+  final String selectedDate;
+  final String start;
+  final String end;
   final String status;
 
   const AppointmentCard({
@@ -108,12 +112,19 @@ class AppointmentCard extends StatelessWidget {
     required this.serviceBranch,
     required this.serviceLocation,
     required this.selectedService,
-    required this.selectedDateTime,
+    required this.selectedDate,
+    required this.start,
+    required this.end,
     required this.status,
   });
 
   @override
   Widget build(BuildContext context) {
+    DateTime parsedTimeStart = DateFormat('HH:mm').parse(start);
+    DateTime parsedTimeEnd = DateFormat('HH:mm').parse(end);
+    String formattedTimeStart = DateFormat('hh:mm a').format(parsedTimeStart);
+    String formattedTimeEnd = DateFormat('hh:mm a').format(parsedTimeEnd);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -132,7 +143,9 @@ class AppointmentCard extends StatelessWidget {
                 if (serviceLocation.isNotEmpty)
                   Text('Your Address: $serviceLocation'),
                 Text('Type of Service: $selectedService'),
-                Text('Appointment Date: $selectedDateTime'),
+                Text('Appointment Date: $selectedDate'),
+                Text('Start: $formattedTimeStart'),
+                Text('End: $formattedTimeEnd'),
                 Text('Status: $status'),
                 // ElevatedButton(
                 //   onPressed: () {

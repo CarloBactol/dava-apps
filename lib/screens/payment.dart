@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:laravel_test_api/constant.dart';
-import 'package:laravel_test_api/screens/home1.dart';
+import 'package:laravel_test_api/screens/bottom_navigation_app.dart';
 import 'package:laravel_test_api/screens/pending_payments.dart';
 import 'package:laravel_test_api/screens/subscriptions.dart';
 import 'package:laravel_test_api/services/payment_service.dart';

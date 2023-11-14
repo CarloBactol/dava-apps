@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:laravel_test_api/constant.dart';
 import 'package:laravel_test_api/models/api_response.dart';
-import 'package:laravel_test_api/provider/location_provider.dart';
-import 'package:laravel_test_api/screens/home1.dart';
+import 'package:laravel_test_api/screens/bottom_navigation_app.dart';
 import 'package:laravel_test_api/screens/login.dart';
 import 'package:laravel_test_api/services/user_services.dart';
-import 'package:provider/provider.dart';
 
 class Loading extends StatefulWidget {
   const Loading({super.key});

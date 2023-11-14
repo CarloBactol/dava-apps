@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:laravel_test_api/constant.dart';
-import 'package:laravel_test_api/screens/home1.dart';
+import 'package:laravel_test_api/screens/bottom_navigation_app.dart';
 import 'package:laravel_test_api/screens/process_premium.dart';
 import 'package:laravel_test_api/screens/success_premium.dart';
 import 'package:laravel_test_api/services/user_services.dart';

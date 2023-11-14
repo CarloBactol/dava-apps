@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final Uri _url =
-    Uri.parse('https://davs-apps-150658629956.herokuapp.com/password/reset');
+    Uri.parse('https://dava-93d325f7c120.herokuapp.com/password/reset');
 
 class ForgotPassword extends StatelessWidget {
   @override

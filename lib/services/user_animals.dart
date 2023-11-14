@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:laravel_test_api/constant.dart';
 import 'package:laravel_test_api/services/user_services.dart';
 
 import '../models/animal.dart';
@@ -10,7 +11,7 @@ class UserAnimals {
     String token = await getToken();
     int id = await getUserId();
     final idString = id.toString();
-    const url = "https://davs-apps-150658629956.herokuapp.com/api/animal";
+    const url = "$baseURL/animal";
     final uri = Uri.parse(url);
     final response = await http.post(
       uri,

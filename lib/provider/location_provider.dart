@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:laravel_test_api/constant.dart';
 import 'package:laravel_test_api/models/location_m.dart';
 import 'package:laravel_test_api/services/user_services.dart';
 
@@ -12,7 +13,7 @@ class LocationProvider extends ChangeNotifier {
 
   Future<void> fetchServices() async {
     String token = await getToken();
-    const apiUrl = 'https://davs-apps-150658629956.herokuapp.com/api/services';
+    const apiUrl = '$baseURL/services';
     final response = await http.get(Uri.parse(apiUrl), headers: {
       "Accept": "application/json",
       'Authorization': 'Bearer $token',
